@@ -1,0 +1,23 @@
+{
+	"system": {
+		"flow-accounting": {
+			"interface": [
+				"eth3"
+			],
+			"netflow": {
+				"enable-egress": "''",
+				"sampling-rate": "1",
+				"version": "10",
+				"server": {
+					"10.10.3.70": {
+						"port": "4739"
+					}
+				},
+				"timeout": {
+					"max-active-life": "1",
+					"expiry-interval": "60"
+				}
+			}
+		}
+	}
+}
