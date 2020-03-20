@@ -1,4 +1,39 @@
 {
+   "service":{
+      "nat":{
+         "rule":{
+            "1":{
+               "description":"DNS Redirect",
+               "destination":{
+                  "port":"53"
+               },
+               "inbound-interface":"eth3",
+               "inside-address":{
+                  "address":"10.10.3.80"
+               },
+               "source":{
+                  "address":"!10.10.3.80"
+               },
+               "log":"disable",
+               "protocol":"tcp_udp",
+               "type":"destination"
+            },
+            "6000":{
+               "description":"Translate DNS to Internal",
+               "destination":{
+                  "address":"10.10.3.80",
+                  "port":"53"
+               },
+               "log":"disable",
+               "outbound-interface":"eth3",
+               "protocol":"tcp_udp",
+               "type":"masquerade"
+            }
+         }
+      }
+   },
+
+
 	"system": {
 		"flow-accounting": {
 			"interface": [
@@ -9,7 +44,7 @@
 				"sampling-rate": "1",
 				"version": "10",
 				"server": {
-					"10.10.3.70": {
+					"10.10.3.71": {
 						"port": "4739"
 					}
 				},
