@@ -3,16 +3,16 @@
       "nat":{
          "rule":{
             "1":{
-               "description":"DNS Redirect",
+               "description":"Captive DNS",
                "destination":{
                   "port":"53"
                },
                "inbound-interface":"eth3",
                "inside-address":{
-                  "address":"10.10.3.80"
+                  "address":"10.10.3.80-10.10.3.81"
                },
                "source":{
-                  "address":"!10.10.3.80"
+                  "address":"!10.10.3.80-10.10.3.81"
                },
                "log":"disable",
                "protocol":"tcp_udp",
@@ -21,7 +21,7 @@
             "6000":{
                "description":"Translate DNS to Internal",
                "destination":{
-                  "address":"10.10.3.80",
+                  "address":"10.10.3.80-10.10.3.81",
                   "port":"53"
                },
                "log":"disable",
@@ -32,27 +32,25 @@
          }
       }
    },
-
-
-	"system": {
-		"flow-accounting": {
-			"interface": [
-				"eth3"
-			],
-			"netflow": {
-				"enable-egress": "''",
-				"sampling-rate": "1",
-				"version": "10",
-				"server": {
-					"10.10.3.103": {
-						"port": "4739"
-					}
-				},
-				"timeout": {
-					"max-active-life": "1",
-					"expiry-interval": "60"
-				}
-			}
-		}
-	}
+   "system":{
+      "flow-accounting":{
+         "interface":[
+            "eth3"
+         ],
+         "netflow":{
+            "enable-egress":"''",
+            "sampling-rate":"1",
+            "version":"10",
+            "server":{
+               "10.10.3.103":{
+                  "port":"4739"
+               }
+            },
+            "timeout":{
+               "max-active-life":"1",
+               "expiry-interval":"60"
+            }
+         }
+      }
+   }
 }
